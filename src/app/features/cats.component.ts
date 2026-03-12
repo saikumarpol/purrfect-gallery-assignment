@@ -34,7 +34,9 @@ import { Cat, CreateCatDto } from '../core/models/cat.model';
           <button mat-icon-button class="close-btn" (click)="ref.close()">
             <mat-icon>close</mat-icon>
           </button>
-          <div class="hero-avatar">🐱</div>
+          <div class="hero-avatar">
+            <video src="/cat.mp4" autoplay loop muted playsinline class="cat-video-icon"></video>
+          </div>
           <h2 class="hero-name">{{ cat()!.name }}</h2>
           <span class="hero-pill">● Active Record</span>
         </div>
@@ -80,12 +82,12 @@ import { Cat, CreateCatDto } from '../core/models/cat.model';
     </div>
   `,
   styles: [`
-    .detail { width: 420px; background: #0c0c14; overflow: hidden; }
+    .detail { max-width: 420px; width: 100vw; background: #ffffff; overflow: hidden; }
 
     .detail-loading {
       height: 280px;
       display: flex; align-items: center; justify-content: center;
-      background: #0c0c14;
+      background: #ffffff;
     }
 
     .spin-ring {
@@ -109,8 +111,8 @@ import { Cat, CreateCatDto } from '../core/models/cat.model';
     .hero-grid {
       position: absolute; inset: 0;
       background:
-        linear-gradient(rgba(99,102,241,0.12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99,102,241,0.12) 1px, transparent 1px);
+        linear-gradient(rgba(99,102,241,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.08) 1px, transparent 1px);
       background-size: 32px 32px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
     }
@@ -118,20 +120,28 @@ import { Cat, CreateCatDto } from '../core/models/cat.model';
     .hero-glow {
       position: absolute; inset: 0;
       background: radial-gradient(ellipse 60% 60% at 50% 60%,
-        rgba(99,102,241,0.18) 0%, transparent 70%);
+        rgba(99,102,241,0.12) 0%, transparent 70%);
     }
 
     .close-btn {
       position: absolute !important;
       top: 14px; right: 14px; z-index: 3;
-      color: rgba(255,255,255,0.25) !important;
-      &:hover { color: white !important; }
+      color: rgba(2,6,23,0.2) !important;
+      &:hover { color: #020617 !important; }
     }
 
     .hero-avatar {
-      font-size: 3.8rem; position: relative; z-index: 2;
-      filter: drop-shadow(0 0 24px rgba(99,102,241,0.7));
+      width: 100px; height: 100px;
+      position: relative; z-index: 2;
+      border-radius: 50%; overflow: hidden;
+      border: 2px solid rgba(99,102,241,0.3);
+      box-shadow: 0 0 30px rgba(99,102,241,0.5);
       animation: float 3.5s ease-in-out infinite;
+    }
+
+    .cat-video-icon {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
 
     @keyframes float {
@@ -142,7 +152,7 @@ import { Cat, CreateCatDto } from '../core/models/cat.model';
     .hero-name {
       font-family: 'Cabinet Grotesk', sans-serif;
       font-size: 1.7rem; font-weight: 900;
-      color: white; margin: 0;
+      color: #020617; margin: 0;
       letter-spacing: -0.04em;
       position: relative; z-index: 2;
     }
@@ -157,12 +167,12 @@ import { Cat, CreateCatDto } from '../core/models/cat.model';
       text-transform: uppercase;
     }
 
-    .detail-body { padding: 0 !important; background: #0c0c14; }
+    .detail-body { padding: 0 !important; background: #ffffff; }
 
     .stats-row {
       display: flex; align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
     .stat {
@@ -172,36 +182,36 @@ import { Cat, CreateCatDto } from '../core/models/cat.model';
 
     .stat-sep {
       width: 1px; height: 36px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.05);
     }
 
     .stat-label {
       font-size: 0.58rem; text-transform: uppercase;
-      letter-spacing: 0.14em; color: rgba(255,255,255,0.28);
+      letter-spacing: 0.14em; color: #64748b;
       font-weight: 600;
     }
 
     .stat-val {
       font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 0.9rem; font-weight: 700; color: white;
+      font-size: 0.9rem; font-weight: 700; color: #1e293b;
     }
 
     .stat-val.active { color: #34d399; }
 
     .detail-section {
       padding: 18px 22px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
       &.last { border-bottom: none; }
     }
 
     .section-label {
       font-size: 0.58rem; letter-spacing: 0.16em;
-      color: rgba(255,255,255,0.25); font-weight: 700;
+      color: #94a3b8; font-weight: 700;
       margin: 0 0 8px; text-transform: uppercase;
     }
 
     .section-text {
-      font-size: 0.87rem; color: rgba(255,255,255,0.55);
+      font-size: 0.87rem; color: #475569;
       line-height: 1.75; margin: 0;
       font-family: 'DM Sans', sans-serif;
     }
@@ -227,16 +237,16 @@ import { Cat, CreateCatDto } from '../core/models/cat.model';
 
     .detail-footer {
       padding: 14px 22px !important;
-      background: #0c0c14;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      background: #ffffff;
+      border-top: 1px solid rgba(0,0,0,0.05);
       justify-content: flex-end !important;
     }
 
     .ghost-btn {
-      color: rgba(255,255,255,0.3) !important;
+      color: #64748b !important;
       font-size: 0.8rem !important; letter-spacing: 0.05em;
       font-family: 'DM Sans', sans-serif !important;
-      &:hover { color: white !important; }
+      &:hover { color: #1e293b !important; }
     }
   `],
 })
@@ -252,7 +262,7 @@ export class CatDetailComponent {
     // ✅ Calls GET /list?id= (required endpoint) — falls back to passed data for local cats
     this.api.getCat(this.data.cat.id).subscribe({
       next: (fetched) => { this.cat.set(fetched); this.loading.set(false); },
-      error: ()        => { this.cat.set(this.data.cat); this.loading.set(false); },
+      error: () => { this.cat.set(this.data.cat); this.loading.set(false); },
     });
   }
 }
@@ -276,7 +286,7 @@ export class CatDetailComponent {
           </button>
         </div>
         <h2 mat-dialog-title>{{ data.mode === 'create' ? 'Register Cat' : 'Update Cat' }}</h2>
-        <p>{{ data.mode === 'create' ? 'Add a new feline to the registry' : 'Modify this cat\'s record' }}</p>
+        <!-- <p>{{ data.mode === 'create' ? 'Add a new feline to the registry' : 'Modify this cat\'s record' }}</p> -->
       </div>
 
       <mat-dialog-content class="form-body">
@@ -331,11 +341,11 @@ export class CatDetailComponent {
     </div>
   `,
   styles: [`
-    .form-dialog { width: 440px; background: #0c0c14; }
+    .form-dialog { max-width: 440px; width: 100vw; background: #ffffff; }
 
     .form-head {
       padding: 24px 26px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
     .form-head-row {
@@ -349,25 +359,25 @@ export class CatDetailComponent {
     }
 
     .form-close {
-      color: rgba(255,255,255,0.2) !important;
+      color: rgba(0,0,0,0.2) !important;
       width: 28px !important; height: 28px !important;
       line-height: 28px !important;
-      &:hover { color: white !important; }
+      &:hover { color: #000000 !important; }
     }
 
     h2[mat-dialog-title] {
       font-family: 'Cabinet Grotesk', sans-serif !important;
       font-size: 1.45rem !important; font-weight: 900 !important;
-      color: white !important; margin: 0 0 4px !important;
+      color: #1e293b !important; margin: 0 0 4px !important;
       padding: 0 !important; letter-spacing: -0.04em !important;
     }
 
     .form-head p {
-      font-size: 0.78rem; color: rgba(255,255,255,0.28); margin: 0;
+      font-size: 0.78rem; color: #64748b; margin: 0;
       font-family: 'DM Sans', sans-serif;
     }
 
-    .form-body { padding: 22px 26px !important; background: #0c0c14; }
+    .form-body { padding: 22px 26px !important; background: #ffffff; }
 
     .form { display: flex; flex-direction: column; gap: 2px; }
 
@@ -375,7 +385,7 @@ export class CatDetailComponent {
 
     .field-lbl {
       font-size: 0.6rem; font-weight: 700;
-      color: rgba(255,255,255,0.3); letter-spacing: 0.16em;
+      color: #94a3b8; letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
@@ -383,7 +393,7 @@ export class CatDetailComponent {
       width: 100%;
 
       ::ng-deep .mat-mdc-text-field-wrapper {
-        background: rgba(255,255,255,0.03) !important;
+        background: #f8fafc !important;
         padding: 0 14px !important;
       }
 
@@ -396,7 +406,7 @@ export class CatDetailComponent {
       ::ng-deep .mdc-notched-outline__leading,
       ::ng-deep .mdc-notched-outline__notch,
       ::ng-deep .mdc-notched-outline__trailing {
-        border-color: rgba(255,255,255,0.09) !important;
+        border-color: #e2e8f0 !important;
       }
 
       ::ng-deep .mdc-notched-outline__leading  { border-radius: 8px 0 0 8px !important; }
@@ -410,30 +420,30 @@ export class CatDetailComponent {
       }
 
       ::ng-deep input, ::ng-deep textarea {
-        color: white !important;
+        color: #1e293b !important;
         font-family: 'DM Sans', sans-serif !important;
         font-size: 0.9rem !important;
-        caret-color: #818cf8;
+        caret-color: #6366f1;
       }
 
       ::ng-deep input::placeholder,
       ::ng-deep textarea::placeholder {
-        color: rgba(255,255,255,0.18) !important;
+        color: #94a3b8 !important;
       }
     }
 
     .form-footer {
       padding: 14px 26px !important;
-      background: #0c0c14;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      background: #ffffff;
+      border-top: 1px solid rgba(0,0,0,0.05);
       gap: 10px;
     }
 
     .ghost-btn {
-      color: rgba(255,255,255,0.25) !important;
+      color: #64748b !important;
       font-family: 'DM Sans', sans-serif !important;
       font-size: 0.82rem !important;
-      &:hover { color: white !important; }
+      &:hover { color: #1e293b !important; }
     }
 
     .submit-btn {
@@ -473,8 +483,8 @@ export class CatFormComponent {
 
   readonly saving = signal(false);
   readonly form = this.fb.group({
-    name:        [this.data.cat?.name        ?? '', Validators.required],
-    age:         [this.data.cat?.age         ?? '', Validators.required],
+    name: [this.data.cat?.name ?? '', Validators.required],
+    age: [this.data.cat?.age ?? '', Validators.required],
     description: [this.data.cat?.description ?? '', Validators.required],
   });
 
@@ -487,7 +497,7 @@ export class CatFormComponent {
       : this.api.updateCat(this.data.cat!.id, dto);
     req$.subscribe({
       next: (cat) => { this.saving.set(false); this.ref.close(cat); },
-      error: ()    => { this.saving.set(false); this.ref.close(); },
+      error: () => { this.saving.set(false); this.ref.close(); },
     });
   }
 }
@@ -506,10 +516,17 @@ export class CatFormComponent {
   template: `
     <div class="shell">
 
+      <!-- Backdrop for mobile -->
+      @if (showSidebar()) {
+        <div class="sb-backdrop" (click)="showSidebar.set(false)"></div>
+      }
+
       <!-- ── Sidebar ── -->
-      <aside class="sidebar">
+      <aside class="sidebar" [class.open]="showSidebar()">
         <div class="sb-brand">
-          <div class="sb-logo">🐱</div>
+          <div class="sb-logo">
+            <img src="/cat.jpeg" alt="Cat Icon" class="cat-img-icon" />
+          </div>
           <div>
             <span class="sb-name">Purrfect</span>
             <span class="sb-sub">Gallery</span>
@@ -517,11 +534,11 @@ export class CatFormComponent {
         </div>
 
         <nav class="sb-nav">
-          <div class="sb-link active">
+          <div class="sb-link active" (click)="showSidebar.set(false)">
             <mat-icon>grid_view</mat-icon>
             <span>Registry</span>
           </div>
-          <div class="sb-link" (click)="openAdd()">
+          <div class="sb-link" (click)="openAdd(); showSidebar.set(false)">
             <mat-icon>add_circle_outline</mat-icon>
             <span>Add Record</span>
           </div>
@@ -554,8 +571,13 @@ export class CatFormComponent {
         <!-- Top bar -->
         <header class="topbar">
           <div class="topbar-left">
-            <span class="topbar-eyebrow">CAT REGISTRY</span>
-            <h1 class="topbar-title">All Records</h1>
+            <button class="menu-btn" (click)="showSidebar.set(true)">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <div>
+              <span class="topbar-eyebrow">CAT REGISTRY</span>
+              <h1 class="topbar-title">All Records</h1>
+            </div>
           </div>
           <div class="topbar-right">
             <div class="searchbox" [class.active]="search()">
@@ -635,12 +657,12 @@ export class CatFormComponent {
               @for (cat of filteredCats(); track cat.id; let i = $index) {
                 <article class="card" [style.--i]="i" (click)="openDetail(cat)" matRipple>
 
-                  <!-- colour strip -->
-                  <div class="card-strip" [class]="'strip-' + (i % 6)"></div>
 
                   <div class="card-pad">
                     <div class="card-row1">
-                      <div class="card-avi">🐱</div>
+                      <div class="card-avi">
+                        <video src="/cat.mp4" autoplay loop muted playsinline class="cat-video-icon"></video>
+                      </div>
                       <div class="card-btns">
                         <button class="cbtn"
                           (click)="openEdit(cat); $event.stopPropagation()"
@@ -661,8 +683,10 @@ export class CatFormComponent {
                     </div>
 
                     <div class="card-info">
-                      <h3 class="cat-name">{{ cat.name }}</h3>
-                      <span class="cat-age">{{ cat.age }} years old</span>
+                      <div class="cat-name-row">
+                        <h3 class="cat-name">{{ cat.name }}</h3>
+                        <span class="cat-age">{{ cat.age }} yrs</span>
+                      </div>
                       <p class="cat-desc">{{ cat.description }}</p>
                     </div>
 
@@ -707,7 +731,7 @@ export class CatFormComponent {
       display: flex;
       width: 100%;
       height: 100vh;
-      background: #04040a;
+      background: #f8fafc;
       font-family: 'DM Sans', sans-serif;
       overflow: hidden;
     }
@@ -716,8 +740,8 @@ export class CatFormComponent {
     .sidebar {
       width: 230px;
       flex-shrink: 0;
-      background: #08080f;
-      border-right: 1px solid rgba(255,255,255,0.05);
+      background: #ffffff;
+      border-right: 1.5px solid #000000;
       display: flex;
       flex-direction: column;
       padding: 0;
@@ -726,30 +750,35 @@ export class CatFormComponent {
 
     .sb-brand {
       display: flex; align-items: center; gap: 12px;
-      padding: 24px 20px 22px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 24px 20px;
+      height: 84px;
+      border-bottom: 1.5px solid #000000;
     }
 
     .sb-logo {
-      width: 38px; height: 38px; flex-shrink: 0;
-      background: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(168,85,247,0.15));
-      border: 1px solid rgba(99,102,241,0.25);
-      border-radius: 10px;
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(168,85,247,0.05));
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 0 20px rgba(99,102,241,0.15);
+      overflow: hidden; padding: 4px;
+    }
+
+    .cat-img-icon {
+      width: 100%; height: 100%;
+      object-fit: contain;
     }
 
     .sb-name {
       display: block;
       font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 0.95rem; font-weight: 900; color: white;
+      font-size: 0.95rem; font-weight: 900; color: #1e293b;
       line-height: 1.1; letter-spacing: -0.03em;
     }
 
     .sb-sub {
       display: block; font-size: 0.6rem;
-      color: rgba(255,255,255,0.25);
+      color: #94a3b8;
       text-transform: uppercase; letter-spacing: 0.12em;
     }
 
@@ -762,23 +791,22 @@ export class CatFormComponent {
     .sb-link {
       display: flex; align-items: center; gap: 10px;
       padding: 9px 12px; border-radius: 8px;
-      color: rgba(255,255,255,0.3);
+      color: #64748b;
       font-size: 0.82rem; font-weight: 500; cursor: pointer;
       transition: all 0.15s;
 
       mat-icon { font-size: 1rem; width: 1rem; height: 1rem; color: inherit; }
 
       &:hover {
-        color: rgba(255,255,255,0.8);
-        background: rgba(255,255,255,0.04);
+        color: #1e293b;
+        background: #f1f5f9;
       }
 
       &.active {
-        color: #c7d2fe;
-        background: rgba(99,102,241,0.1);
-        border: 1px solid rgba(99,102,241,0.18);
+        color: #6366f1;
+        background: rgba(99,102,241,0.05);
 
-        mat-icon { color: #818cf8; }
+        mat-icon { color: #6366f1; }
       }
     }
 
@@ -786,7 +814,7 @@ export class CatFormComponent {
       display: flex; align-items: center;
       margin: 0 12px;
       padding: 14px 0;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid #000000;
       gap: 0;
     }
 
@@ -797,35 +825,35 @@ export class CatFormComponent {
 
     .sb-stat-sep {
       width: 1px; height: 32px;
-      background: rgba(255,255,255,0.05);
+      background: #000000;
     }
 
     .sb-stat-val {
       font-family: 'Cabinet Grotesk', sans-serif;
       font-size: 1.35rem; font-weight: 900;
-      color: #818cf8; line-height: 1;
+      color: #6366f1; line-height: 1;
     }
 
     .sb-stat-lbl {
       font-size: 0.58rem; text-transform: uppercase;
-      letter-spacing: 0.1em; color: rgba(255,255,255,0.22);
+      letter-spacing: 0.1em; color: #94a3b8;
       font-weight: 600;
     }
 
     .sb-footer {
       padding: 14px 16px;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid #000000;
       display: flex; flex-direction: column; gap: 5px;
     }
 
     .api-badge {
       display: flex; align-items: center; gap: 6px;
-      font-size: 0.7rem; color: rgba(255,255,255,0.22);
+      font-size: 0.7rem; color: #000000;
     }
 
     .api-dot {
       width: 5px; height: 5px; border-radius: 50%;
-      background: #34d399; box-shadow: 0 0 5px #34d399;
+      background: #10b981;
       animation: blink 2.4s ease-in-out infinite;
     }
 
@@ -835,36 +863,57 @@ export class CatFormComponent {
     }
 
     .sb-version {
-      font-size: 0.58rem; color: rgba(255,255,255,0.12);
+      font-size: 0.58rem; color: #000000;
       letter-spacing: 0.05em;
+    }
+
+    .sb-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.15);
+      backdrop-filter: blur(2px);
+      z-index: 99;
     }
 
     /* ───── Main ───── */
     .main {
       flex: 1; display: flex; flex-direction: column;
       overflow: hidden; min-width: 0;
+      background: #f8fafc;
     }
 
     /* ───── Topbar ───── */
     .topbar {
       display: flex; align-items: center;
       justify-content: space-between;
-      padding: 20px 32px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: #04040a;
+      padding: 0 32px;
+      height: 84px;
+      border-bottom: 1.5px solid #000000;
+      background: #ffffff;
       flex-shrink: 0; gap: 1rem;
+    }
+
+    .topbar-left {
+      display: flex; align-items: center; gap: 14px;
+    }
+
+    .menu-btn {
+      display: none;
+      background: none; border: none; padding: 0;
+      cursor: pointer; color: #000000;
+      mat-icon { font-size: 1.5rem !important; width: 1.5rem !important; height: 1.5rem !important; }
     }
 
     .topbar-eyebrow {
       display: block; font-size: 0.58rem;
-      letter-spacing: 0.2em; color: rgba(255,255,255,0.22);
+      letter-spacing: 0.2em; color: #94a3b8;
       text-transform: uppercase; font-weight: 700;
       margin-bottom: 3px;
     }
 
     .topbar-title {
       font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 1.35rem; font-weight: 900; color: white;
+      font-size: 1.35rem; font-weight: 900; color: #1e293b;
       margin: 0; letter-spacing: -0.04em;
     }
 
@@ -874,51 +923,52 @@ export class CatFormComponent {
 
     .searchbox {
       display: flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
       border-radius: 9px; padding: 0 12px; height: 38px;
-      transition: border-color 0.15s, background 0.15s;
+      transition: all 0.15s;
 
       mat-icon {
         font-size: 1rem !important; width: 1rem !important;
-        height: 1rem !important; color: rgba(255,255,255,0.22);
+        height: 1rem !important; color: #94a3b8;
         flex-shrink: 0;
       }
 
       &.active, &:focus-within {
-        border-color: rgba(99,102,241,0.4);
-        background: rgba(99,102,241,0.05);
-        mat-icon { color: #818cf8; }
+        border-color: #6366f1;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        mat-icon { color: #6366f1; }
       }
     }
 
     .searchbox input {
       background: transparent; border: none; outline: none;
-      color: white; font-size: 0.82rem; width: 190px;
+      color: #1e293b; font-size: 0.82rem; width: 190px;
       font-family: 'DM Sans', sans-serif;
-      &::placeholder { color: rgba(255,255,255,0.18); }
+      &::placeholder { color: #94a3b8; }
     }
 
     .search-x {
       background: none; border: none; cursor: pointer;
-      display: flex; padding: 0; color: rgba(255,255,255,0.22);
+      display: flex; padding: 0; color: #94a3b8;
       mat-icon { font-size: 0.9rem !important; width: 0.9rem !important; height: 0.9rem !important; }
-      &:hover { color: white; }
+      &:hover { color: #1e293b; }
     }
 
     .new-btn {
       display: flex; align-items: center; gap: 6px;
-      background: #6366f1; color: white; border: none;
+      background: #6366f1; color: #ffffff; border: none;
       border-radius: 9px; padding: 0 18px; height: 38px;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.82rem; font-weight: 600; cursor: pointer;
       letter-spacing: 0.02em; white-space: nowrap;
-      transition: background 0.15s, transform 0.15s;
-      box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+      transition: all 0.15s;
+      box-shadow: 0 4px 12px rgba(99,102,241,0.25);
 
       mat-icon { font-size: 1rem !important; width: 1rem !important; height: 1rem !important; }
 
-      &:hover { background: #4f46e5; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(99,102,241,0.45); }
+      &:hover { background: #4f46e5; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(99,102,241,0.35); }
     }
 
     /* ───── Content ───── */
@@ -928,7 +978,7 @@ export class CatFormComponent {
 
       &::-webkit-scrollbar { width: 4px; }
       &::-webkit-scrollbar-thumb {
-        background: rgba(255,255,255,0.07);
+        background: #e2e8f0;
         border-radius: 4px;
       }
     }
@@ -940,15 +990,15 @@ export class CatFormComponent {
 
     .grid-count {
       font-size: 0.68rem; text-transform: uppercase;
-      letter-spacing: 0.12em; color: rgba(255,255,255,0.2);
+      letter-spacing: 0.12em; color: #94a3b8;
       font-weight: 600;
     }
 
     .active-filter {
       display: flex; align-items: center; gap: 5px;
-      background: rgba(99,102,241,0.1);
-      border: 1px solid rgba(99,102,241,0.18);
-      color: #818cf8; font-size: 0.7rem;
+      background: rgba(99,102,241,0.05);
+      border: 1px solid rgba(99,102,241,0.1);
+      color: #6366f1; font-size: 0.7rem;
       padding: 2px 8px; border-radius: 5px;
 
       button {
@@ -967,23 +1017,23 @@ export class CatFormComponent {
 
     /* ───── Card ───── */
     .card {
-      background: #0c0c16;
-      border: 1px solid rgba(255,255,255,0.05);
+      background: #ffffff;
+      border: 1.5px solid #000000;
       border-radius: 14px;
       overflow: hidden;
       cursor: pointer;
       position: relative;
       animation: fadeUp 0.3s ease-out both;
       animation-delay: calc(var(--i, 0) * 45ms);
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      transition: all 0.2s;
 
       &:hover {
-        border-color: rgba(99,102,241,0.28);
+        border-color: #000000;
         transform: translateY(-4px);
-        box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.08);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.1);
 
         .card-view { opacity: 1; transform: translateX(0); }
-        .card-avi  { transform: scale(1.1) rotate(-4deg); }
+        .card-avi  { transform: scale(1.05); }
         .card-btns { opacity: 1; }
       }
     }
@@ -993,16 +1043,7 @@ export class CatFormComponent {
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .card-strip {
-      height: 3px; width: 100%;
-    }
 
-    .strip-0 { background: linear-gradient(90deg, #f472b6, #ec4899); }
-    .strip-1 { background: linear-gradient(90deg, #818cf8, #6366f1); }
-    .strip-2 { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
-    .strip-3 { background: linear-gradient(90deg, #34d399, #10b981); }
-    .strip-4 { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
-    .strip-5 { background: linear-gradient(90deg, #c084fc, #a855f7); }
 
     .card-pad { padding: 18px 18px 16px; }
 
@@ -1012,8 +1053,11 @@ export class CatFormComponent {
     }
 
     .card-avi {
-      font-size: 2.4rem; line-height: 1;
-      transition: transform 0.25s;
+      width: 54px; height: 54px;
+      border-radius: 12px; overflow: hidden;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s;
     }
 
     .card-btns {
@@ -1023,30 +1067,30 @@ export class CatFormComponent {
 
     .cbtn {
       width: 28px; height: 28px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 7px;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: rgba(255,255,255,0.35);
+      cursor: pointer; color: #94a3b8;
       transition: all 0.15s;
 
       mat-icon { font-size: 0.85rem !important; width: 0.85rem !important; height: 0.85rem !important; }
 
       &:hover {
-        background: rgba(255,255,255,0.08); color: white;
+        background: #f8fafc; color: #1e293b; border-color: #cbd5e1;
       }
 
       &.del:hover {
-        background: rgba(239,68,68,0.12);
-        border-color: rgba(239,68,68,0.25);
-        color: #f87171;
+        background: #fef2f2;
+        border-color: #fecaca;
+        color: #ef4444;
       }
     }
 
     .mini-ring {
       width: 12px; height: 12px;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      border-top-color: white; border-radius: 50%;
+      border: 1.5px solid #e2e8f0;
+      border-top-color: #6366f1; border-radius: 50%;
       animation: spin 0.7s linear infinite;
     }
 
@@ -1054,19 +1098,24 @@ export class CatFormComponent {
 
     .card-info { margin-bottom: 14px; }
 
+    .cat-name-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
     .cat-name {
       font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 1.05rem; font-weight: 800; color: white;
-      margin: 0 0 2px; letter-spacing: -0.03em;
+      font-size: 1.05rem; font-weight: 800; color: #1e293b;
+      margin: 0; letter-spacing: -0.03em;
     }
 
     .cat-age {
-      display: block; font-size: 0.7rem;
-      color: rgba(255,255,255,0.25); margin-bottom: 8px;
+      font-size: 0.75rem; font-weight: 600;
+      color: #64748b;
     }
 
     .cat-desc {
-      font-size: 0.8rem; color: rgba(255,255,255,0.38);
+      font-size: 0.8rem; color: #475569;
       line-height: 1.65; margin: 0;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -1077,20 +1126,20 @@ export class CatFormComponent {
     .card-foot {
       display: flex; align-items: center;
       justify-content: space-between;
-      border-top: 1px solid rgba(255,255,255,0.04);
+      border-top: 1.5px solid #000000;
       padding-top: 12px;
     }
 
     .cat-id {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem; color: rgba(255,255,255,0.14);
+      font-size: 0.62rem; color: #000000;
     }
 
     .card-view {
       display: flex; align-items: center; gap: 3px;
-      font-size: 0.7rem; color: #818cf8; font-weight: 600;
+      font-size: 0.7rem; color: #6366f1; font-weight: 600;
       opacity: 0; transform: translateX(-5px);
-      transition: opacity 0.2s, transform 0.2s;
+      transition: all 0.2s;
 
       mat-icon { font-size: 0.8rem !important; width: 0.8rem !important; height: 0.8rem !important; }
     }
@@ -1103,12 +1152,12 @@ export class CatFormComponent {
 
       h3 {
         font-family: 'Cabinet Grotesk', sans-serif;
-        font-size: 1.4rem; font-weight: 900; color: white;
+        font-size: 1.4rem; font-weight: 900; color: #1e293b;
         margin: 0; letter-spacing: -0.03em;
       }
 
       p {
-        color: rgba(255,255,255,0.28);
+        color: #64748b;
         font-size: 0.84rem; margin: 0; max-width: 280px;
         line-height: 1.6;
       }
@@ -1116,17 +1165,18 @@ export class CatFormComponent {
 
     .state-icon-wrap {
       font-size: 2.5rem; margin-bottom: 4px;
-      &.error { filter: grayscale(0.3); }
+      &.error { color: #ef4444; }
     }
 
     .empty-paw {
       font-size: 3rem; margin-bottom: 4px;
       animation: bob 2.5s ease-in-out infinite;
+      color: #94a3b8;
     }
 
     @keyframes bob {
       0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-9px); }
+      50%       { transform: translateY(-7px); }
     }
 
     .dots {
@@ -1149,36 +1199,67 @@ export class CatFormComponent {
 
     .ghost-action {
       display: flex; align-items: center; gap: 6px;
-      background: rgba(99,102,241,0.08);
-      border: 1px solid rgba(99,102,241,0.18);
-      color: #818cf8; border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #6366f1; border-radius: 8px;
       padding: 9px 18px; font-size: 0.8rem; font-weight: 600;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
       transition: all 0.15s; margin-top: 8px;
 
       mat-icon { font-size: 0.95rem !important; width: 0.95rem !important; height: 0.95rem !important; }
-      &:hover { background: rgba(99,102,241,0.15); transform: translateY(-1px); }
+      &:hover { background: #f8fafc; border-color: #cbd5e1; transform: translateY(-1px); }
+    }
+
+    .cat-video-icon {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
 
     /* ───── Responsive ───── */
     @media (max-width: 820px) {
-      .sidebar { display: none; }
-      .topbar { padding: 14px 16px; }
+      .sidebar {
+        position: fixed; left: -260px; top: 0; bottom: 0;
+        z-index: 100; box-shadow: 20px 0 60px rgba(0,0,0,0.1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 260px;
+      }
+      .sidebar.open { transform: translateX(260px); }
+      .sb-backdrop { display: block; }
+      .menu-btn { display: flex; }
+
+      .topbar {
+        padding: 12px 16px; height: auto;
+        flex-direction: column; align-items: flex-start; gap: 14px;
+        border-bottom-width: 1px;
+      }
+      .topbar-right { width: 100%; gap: 10px; }
+      .searchbox { flex: 1; }
+      .searchbox input { width: 100%; }
       .content { padding: 16px; }
-      .searchbox input { width: 130px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .topbar-title { font-size: 1.15rem; }
+      .topbar-eyebrow { font-size: 0.5rem; }
+      .new-btn span { display: none; }
+      .new-btn { padding: 0 12px; }
+      .cat-name { font-size: 1rem; }
+      .cat-age { font-size: 0.7rem; }
     }
   `],
 })
 export class CatsComponent implements OnInit {
-  private readonly api    = inject(CatApiService);
+  private readonly api = inject(CatApiService);
   private readonly dialog = inject(MatDialog);
-  private readonly snack  = inject(MatSnackBar);
+  private readonly snack = inject(MatSnackBar);
 
-  readonly cats       = signal<Cat[]>([]);
-  readonly loading    = signal(true);
-  readonly error      = signal<string | null>(null);
+  readonly cats = signal<Cat[]>([]);
+  readonly loading = signal(true);
+  readonly error = signal<string | null>(null);
   readonly deletingId = signal<string | null>(null);
-  readonly search     = signal('');
+  readonly search = signal('');
+  readonly showSidebar = signal(false);
 
   readonly filteredCats = computed(() => {
     const q = this.search().toLowerCase();
@@ -1201,11 +1282,11 @@ export class CatsComponent implements OnInit {
   }
 
   openDetail(cat: Cat): void {
-    this.dialog.open(CatDetailComponent, { data: { cat }, width: '420px' });
+    this.dialog.open(CatDetailComponent, { data: { cat }, maxWidth: '95vw' });
   }
 
   openAdd(): void {
-    this.dialog.open(CatFormComponent, { data: { mode: 'create' }, width: '460px' })
+    this.dialog.open(CatFormComponent, { data: { mode: 'create' }, maxWidth: '95vw' })
       .afterClosed().subscribe((cat: Cat | undefined) => {
         if (cat) {
           this.cats.update((list) => [cat, ...list]);
@@ -1218,7 +1299,7 @@ export class CatsComponent implements OnInit {
   }
 
   openEdit(cat: Cat): void {
-    this.dialog.open(CatFormComponent, { data: { mode: 'edit', cat }, width: '460px' })
+    this.dialog.open(CatFormComponent, { data: { mode: 'edit', cat }, maxWidth: '95vw' })
       .afterClosed().subscribe((result: Cat | undefined) => {
         if (result) {
           this.cats.update((list) => list.map((c) => c.id === result.id ? result : c));
