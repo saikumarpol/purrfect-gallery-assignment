@@ -4,62 +4,44 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #f6f5f8;
+  background: #04040a;
   -webkit-font-smoothing: antialiased;
-  font-family: 'DM Sans', sans-serif;
-}
-
-/* Fix Material Icons */
-.material-icons {
-  font-family: 'Material Icons' !important;
-  font-style: normal;
-}
-
-/* Dialog rounded corners */
-.mat-mdc-dialog-container .mdc-dialog__surface {
-  border-radius: 20px !important;
   overflow: hidden;
 }
 
-/* Snackbar */
-.mat-mdc-snack-bar-container {
-  --mdc-snackbar-container-color: #1e1b4b;
-  border-radius: 12px !important;
-}
-.success-snack {
-  .mdc-snackbar__surface {
-    background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
-    color: white !important;
-    border-radius: 16px !important;
-    font-weight: 500 !important;
-    box-shadow: 0 8px 30px rgba(124,58,237,0.5) !important;
-    padding: 14px 20px !important;
-    min-width: 320px !important;
-  }
-
-  .mat-mdc-snack-bar-label {
-    color: white !important;
-    font-size: 0.95rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.01em !important;
-  }
-
-  .mat-mdc-snack-bar-action .mdc-button__label {
-    color: #e9d5ff !important;
-    font-weight: 700 !important;
-    font-size: 0.85rem !important;
-  }
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 16px !important;
+  overflow: hidden;
+  background: #0c0c14 !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  box-shadow: 0 30px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.04) !important;
 }
 
-.error-snack {
-  .mdc-snackbar__surface {
-    background: #ef4444 !important;
-    color: white !important;
-    border-radius: 16px !important;
-    box-shadow: 0 8px 30px rgba(239,68,68,0.4) !important;
-  }
+.success-snack .mdc-snackbar__surface {
+  background: #0c0c14 !important;
+  border: 1px solid rgba(99,102,241,0.35) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6) !important;
+}
 
-  .mat-mdc-snack-bar-label {
-    color: white !important;
-  }
+.success-snack .mat-mdc-snack-bar-label {
+  color: rgba(255,255,255,0.85) !important;
+  font-size: 0.84rem !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+.success-snack .mat-mdc-snack-bar-action .mdc-button__label {
+  color: #818cf8 !important;
+  font-weight: 700 !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background: #0c0c14 !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 10px !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-snack-bar-label {
+  color: rgba(255,255,255,0.6) !important;
+  font-family: 'DM Sans', sans-serif !important;
 }

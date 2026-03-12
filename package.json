@@ -18,6 +18,7 @@
     "preview": "npm run build:ssr && npm run serve:ssr"
   },
   "dependencies": {
+    "@angular/animations": "^21.2.2",
     "@angular/cdk": "^21.2.1",
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
