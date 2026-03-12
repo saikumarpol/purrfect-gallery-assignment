@@ -2,9 +2,22 @@
 
 A cat registry application built with **Angular 19**, demonstrating modern Angular patterns including standalone components, signals, zoneless change detection, and Angular Material.
 
+
+<img width="1464" height="877" alt="Screenshot 2026-03-12 at 12 52 15 PM" src="https://github.com/user-attachments/assets/f93d5c59-1efb-4bdd-851a-982cf35e0d9d" />
+
+<img width="1466" height="834" alt="Screenshot 2026-03-12 at 12 53 24 PM" src="https://github.com/user-attachments/assets/c085c23a-dfd2-4964-8dca-3711b6709688" />
+
+
+
+<img width="1467" height="841" alt="Screenshot 2026-03-12 at 12 53 09 PM" src="https://github.com/user-attachments/assets/3f08ba3b-19eb-4a8d-a81c-d96966fe37f4" />
+
+
+
+
 ---
 
 ## Tech Stack
+
 
 | Layer | Choice |
 |---|---|
